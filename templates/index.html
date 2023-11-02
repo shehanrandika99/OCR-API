@@ -1,24 +1,67 @@
 <!DOCTYPE html>
 <html>
-  <body>
-    <h2>EasyOCR Using Flask</h2>
-    <form action="/" method="post" enctype="multipart/form-data">
-      <input type="file" name="file" id="file"><br><br>
-      <input type="submit" value="Submit">
-    </form>
 
-    {% if error %}
-      <p>{{ error }}</p>
-    {% endif %}
-{% if results %}
-  <h3>Results:</h3>
-  <ul>
-    {% for result in results %}
-      <li>{{ result[1] }}</li>
-    {% endfor %}
-  </ul>
-  <img src="{{ url_for('static', filename=filename) }}" alt="Uploaded Image" height="200">
-{% endif %}
+<head>
+    <title>EasyOCR Using Flask</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-  </body>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        input[type="file"] {
+            margin-bottom: 20px;
+        }
+
+        .error-message {
+            color: red;
+            font-weight: bold;
+        }
+
+        .results-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="mb-4">EasyOCR Using Flask</h2>
+        <form action="/" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <input type="file" name="file" id="file" class="form-control">
+            </div>
+            <div class="mb-3">
+                <input type="submit" value="Submit" class="btn btn-success">
+            </div>
+        </form>
+
+        {% if error %}
+        <p class="error-message">{{ error }}</p>
+        {% endif %}
+
+        {% if results %}
+        <div class="results-container">
+            <h3>Results:</h3>
+            <ul class="list-group">
+                {% for result in results %}
+                <li class="list-group-item">{{ result[1] }}</li>
+                {% endfor %}
+            </ul>
+{#            <img src="{{ url_for('static', filename=filename) }}" alt="Uploaded Image" class="mt-3" style="max-height: 200px;">#}
+        </div>
+        {% endif %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-7q4sfAuVkf99Jozu1bZ8gf/PgSVPpSQGfE1PAvKUwy73Bf2U5q5GomCaXxgF6Q9k"
+        crossorigin="anonymous"></script>
+</body>
+
 </html>
