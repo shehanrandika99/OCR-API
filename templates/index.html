@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h2>EasyOCR Using Flask</h2>
+    <form action="/" method="post" enctype="multipart/form-data">
+      <input type="file" name="file" id="file"><br><br>
+      <input type="submit" value="Submit">
+    </form>
+
+    {% if error %}
+      <p>{{ error }}</p>
+    {% endif %}
+{% if results %}
+  <h3>Results:</h3>
+  <ul>
+    {% for result in results %}
+      <li>{{ result[1] }}</li>
+    {% endfor %}
+  </ul>
+  <img src="{{ url_for('static', filename=filename) }}" alt="Uploaded Image" height="200">
+{% endif %}
+
+  </body>
+</html>
